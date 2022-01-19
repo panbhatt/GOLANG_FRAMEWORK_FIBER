@@ -2,12 +2,12 @@ package main
 
 import "github.com/gofiber/fiber/v2"
 
-func MountGroupSubApp() *fiber.App{
+func MountGroupSubAppV2() *fiber.App {
 
-	subApp := fiber.New();
+	subApp := fiber.New()
 
-	subApp.Get("/", func(c *fiber.Ctx) error{
-		c.SendString("This is version v1")
+	subApp.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("This is version V2")
 	})
 
 	return subApp

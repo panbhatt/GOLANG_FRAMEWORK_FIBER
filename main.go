@@ -72,6 +72,21 @@ func main() {
 
 	})
 
+	app.Get("/json", func(c *fiber.Ctx) error {
+		p := Person{
+			Name: "Pankaj", Age: 20,
+		}
+		return c.JSON(p)
+	})
+
+	app.Get("/jsonmap", func(c *fiber.Ctx) error {
+
+		return c.JSON(fiber.Map{
+			"name" : "Pankaj Bhatt",
+			"age" : 20,
+		})
+	})
+
 	fmt.Printf("Total Number of handers = %d", app.HandlersCount())
 	// THis will give a list of all the Handlers the app has.
 	fmt.Println("\nMarshalling Indent of Handlers()")

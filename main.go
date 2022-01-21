@@ -79,8 +79,20 @@ func main() {
 		return c.JSON(p)
 	})
 
+	app.Get("/401", func(c *fiber.Ctx) error {
+		return c.SendStatus(fiber.StatusNotFound)
+	})
+
+	app.Get("/readme", func(c *fiber.Ctx) error {
+		return c.SendFile("./README.md", false)
+	})
+
 	app.Get("/jsonmap", func(c *fiber.Ctx) error {
 
+		c.Links(
+			"http://api.example.com/users?page=2", "next",
+			"http://api.example.com/users?page=5", "last",
+		)
 		return c.JSON(fiber.Map{
 			"name" : "Pankaj Bhatt",
 			"age" : 20,
